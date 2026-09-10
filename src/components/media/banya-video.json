@@ -1,0 +1,36 @@
+{
+  "collectionName": "components_media_banya_videos",
+  "info": {
+    "displayName": "BanyaVideo"
+  },
+  "options": {},
+  "attributes": {
+    "title_ru": {
+      "type": "string"
+    },
+    "title_kz": {
+      "type": "string"
+    },
+    "video": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "preview": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  },
+  "config": {}
+}

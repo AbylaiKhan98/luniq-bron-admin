@@ -1,0 +1,70 @@
+{
+  "kind": "collectionType",
+  "collectionName": "rooms",
+  "info": {
+    "singularName": "room",
+    "pluralName": "rooms",
+    "displayName": "Room"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name_ru": {
+      "type": "string"
+    },
+    "name_kz": {
+      "type": "string"
+    },
+    "type_ru": {
+      "type": "string"
+    },
+    "type_kz": {
+      "type": "string"
+    },
+    "pricePerHour": {
+      "type": "integer"
+    },
+    "minHours": {
+      "type": "integer"
+    },
+    "capacity": {
+      "type": "integer"
+    },
+    "rating": {
+      "type": "integer"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "category": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::category.category"
+    },
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "badge_ru": {
+      "type": "string"
+    },
+    "badge_kz": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "kind": "collectionType",
+  "collectionName": "banyas",
+  "info": {
+    "singularName": "banya",
+    "pluralName": "banyas",
+    "displayName": "Banya"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name_ru": {
+      "type": "string"
+    },
+    "name_kz": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name_ru"
+    },
+    "openTill": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "whatsapp": {
+      "type": "string"
+    },
+    "instagram": {
+      "type": "string"
+    },
+    "gisUrl": {
+      "type": "string"
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "rooms": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::room.room"
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::category.category"
+    },
+    "kaspiPhone": {
+      "type": "string"
+    },
+    "depositAmount": {
+      "type": "integer"
+    },
+    "workingHours_ru": {
+      "type": "string"
+    },
+    "workingHours_kz": {
+      "type": "string"
+    },
+    "videos": {
+      "type": "component",
+      "component": "media.banya-video",
+      "repeatable": true
+    },
+    "extras": {
+      "type": "component",
+      "component": "booking.extra-service",
+      "repeatable": true
+    },
+    "weekdayStart": {
+      "type": "integer"
+    },
+    "weekdayEnd": {
+      "type": "integer"
+    },
+    "weekendStart": {
+      "type": "integer"
+    },
+    "weekendEnd": {
+      "type": "integer"
+    },
+    "telegramChatId": {
+      "type": "string"
+    }
+  }
+}

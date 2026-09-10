@@ -1,0 +1,65 @@
+{
+  "kind": "collectionType",
+  "collectionName": "bookings",
+  "info": {
+    "singularName": "booking",
+    "pluralName": "bookings",
+    "displayName": "Booking"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "clientName": {
+      "type": "string"
+    },
+    "clientPhone": {
+      "type": "string"
+    },
+    "bookingDate": {
+      "type": "date"
+    },
+    "bookingTime": {
+      "type": "string"
+    },
+    "durationHours": {
+      "type": "integer"
+    },
+    "guestsCount": {
+      "type": "integer"
+    },
+    "totalPrice": {
+      "type": "integer"
+    },
+    "room": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::room.room"
+    },
+    "banya": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::banya.banya"
+    },
+    "bookingStatus": {
+      "type": "enumeration",
+      "default": "pending",
+      "enum": [
+        "pending",
+        "hold",
+        "confirmed",
+        "cancelled"
+      ]
+    },
+    "extras": {
+      "type": "string"
+    },
+    "processedBy": {
+      "type": "string"
+    },
+    "kaspiPhone": {
+      "type": "string"
+    }
+  }
+}

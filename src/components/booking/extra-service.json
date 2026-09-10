@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_booking_extra_services",
+  "info": {
+    "displayName": "ExtraService"
+  },
+  "options": {},
+  "attributes": {
+    "name_ru": {
+      "type": "string"
+    },
+    "name_kz": {
+      "type": "string"
+    },
+    "price": {
+      "type": "integer"
+    }
+  },
+  "config": {}
+}
