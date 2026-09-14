@@ -595,6 +595,7 @@ export interface ApiRoomRoom extends Struct.CollectionTypeSchema {
     name_kz: Schema.Attribute.String;
     name_ru: Schema.Attribute.String;
     pricePerHour: Schema.Attribute.Integer;
+    pricePerHourWeekend: Schema.Attribute.Integer;
     publishedAt: Schema.Attribute.DateTime;
     rating: Schema.Attribute.Integer;
     type_kz: Schema.Attribute.String;

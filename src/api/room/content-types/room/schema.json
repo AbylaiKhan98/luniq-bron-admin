@@ -65,6 +65,9 @@
     },
     "badge_kz": {
       "type": "string"
+    },
+    "pricePerHourWeekend": {
+      "type": "integer"
     }
   }
 }
