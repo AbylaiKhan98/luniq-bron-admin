@@ -458,6 +458,8 @@ export interface ApiBanyaBanya extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::category.category'
     >;
+    closedDayReason_ru: Schema.Attribute.String;
+    closedDays: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -583,6 +585,7 @@ export interface ApiRoomRoom extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    extraGuestPricePerHour: Schema.Attribute.Integer;
     image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     images: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
@@ -591,6 +594,7 @@ export interface ApiRoomRoom extends Struct.CollectionTypeSchema {
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::room.room'> &
       Schema.Attribute.Private;
+    maxCapacity: Schema.Attribute.Integer;
     minHours: Schema.Attribute.Integer;
     name_kz: Schema.Attribute.String;
     name_ru: Schema.Attribute.String;

@@ -68,6 +68,12 @@
     },
     "pricePerHourWeekend": {
       "type": "integer"
+    },
+    "maxCapacity": {
+      "type": "integer"
+    },
+    "extraGuestPricePerHour": {
+      "type": "integer"
     }
   }
 }

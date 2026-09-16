@@ -92,6 +92,12 @@
     },
     "telegramChatId": {
       "type": "string"
+    },
+    "closedDays": {
+      "type": "string"
+    },
+    "closedDayReason_ru": {
+      "type": "string"
     }
   }
 }
