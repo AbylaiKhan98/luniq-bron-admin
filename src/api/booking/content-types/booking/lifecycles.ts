@@ -1,9 +1,9 @@
-// Защита от дублей в пределах сессии
+// Защита от дублей заявок в пределах 15 секунд
 const processedBookings = new Set<string>();
 
 function escapeHtml(str: string): string {
   if (!str) return '';
-  return str
+  return String(str)
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
@@ -24,7 +24,7 @@ export default {
     try {
       const botToken = (process.env.TELEGRAM_BOT_TOKEN || '8962413216:AAEw9I7MPe3Exci9ShVISxjjC-Csez3-5EU').trim();
 
-      // Подтягиваем данные брони
+      // Загружаем созданную бронь со связанным залом и комплексом
       const booking: any = await strapi.documents('api::booking.booking').findOne({
         documentId: result.documentId,
         populate: ['banya', 'room']
@@ -42,10 +42,22 @@ export default {
         ? `${Number(booking.banya.depositAmount).toLocaleString()} ₸` 
         : 'Без задатка';
 
+      // Санитизация параметров для безопасного режима HTML в Telegram
       const safeRoomName = escapeHtml(booking.room?.name_ru || 'Не указан');
       const safeClientName = escapeHtml(booking.clientName || 'Гость');
-      const safeExtras = escapeHtml(booking.extras || 'Нет');
       const safeKaspi = escapeHtml(kaspiNumber);
+
+      // Форматирование расшифровки состава заказа
+      const rawExtras = booking.extras || '';
+      let formattedBreakdown = 'Базовый тариф';
+
+      if (rawExtras) {
+        // Разделяем компоненты по разделителю " | " и выводим каждый пункт отдельной строкой
+        const parts = rawExtras.split('|').map((p: string) => p.trim()).filter(Boolean);
+        if (parts.length > 0) {
+          formattedBreakdown = parts.map((p: string) => `• ${escapeHtml(p)}`).join('\n');
+        }
+      }
 
       const text = [
         `⚡️ <b>НОВАЯ ЗАЯВКА С САЙТА!</b>`,
@@ -53,13 +65,15 @@ export default {
         `🏠 <b>Зал:</b> ${safeRoomName}`,
         `📅 <b>Дата:</b> ${booking.bookingDate}`,
         `⏰ <b>Время:</b> ${booking.bookingTime} (${booking.durationHours} ч)`,
-        `👥 <b>Гостей:</b> ${booking.guestsCount}`,
-        `🌿 <b>Дополнительно:</b> ${safeExtras}`,
+        `👥 <b>Гостей:</b> ${booking.guestsCount} чел`,
         `━━━━━━━━━━━━━━━━━━━`,
-        `💳 <b>ДЕТАЛИ ОПЛАТЫ:</b>`,
+        `📋 <b>СОСТАВ ЗАКАЗА:</b>`,
+        formattedBreakdown,
+        `━━━━━━━━━━━━━━━━━━━`,
+        `💳 <b>ОПЛАТА:</b>`,
         `• Номер Kaspi: <code>${safeKaspi}</code>`,
-        `• Условие: <b>${depositText}</b>`,
-        `• Общая сумма: <b>${Number(booking.totalPrice || 0).toLocaleString()} ₸</b>`,
+        `• Задаток: <b>${depositText}</b>`,
+        `• Итого: <b>${Number(booking.totalPrice || 0).toLocaleString()} ₸</b>`,
         `━━━━━━━━━━━━━━━━━━━`,
         `👤 <b>Клиент:</b> ${safeClientName} (<code>${booking.clientPhone}</code>)`,
         `⏳ <b>Статус:</b> Ожидает обработки`

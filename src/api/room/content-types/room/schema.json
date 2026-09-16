@@ -74,6 +74,24 @@
     },
     "extraGuestPricePerHour": {
       "type": "integer"
+    },
+    "pricingType": {
+      "type": "enumeration",
+      "default": "hourly",
+      "enum": [
+        "hourly",
+        "package",
+        "daily"
+      ]
+    },
+    "packageHours": {
+      "type": "integer"
+    },
+    "packagePrice": {
+      "type": "integer"
+    },
+    "packagePriceWeekend": {
+      "type": "integer"
     }
   }
 }

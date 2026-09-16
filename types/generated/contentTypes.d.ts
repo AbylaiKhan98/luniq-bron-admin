@@ -598,8 +598,13 @@ export interface ApiRoomRoom extends Struct.CollectionTypeSchema {
     minHours: Schema.Attribute.Integer;
     name_kz: Schema.Attribute.String;
     name_ru: Schema.Attribute.String;
+    packageHours: Schema.Attribute.Integer;
+    packagePrice: Schema.Attribute.Integer;
+    packagePriceWeekend: Schema.Attribute.Integer;
     pricePerHour: Schema.Attribute.Integer;
     pricePerHourWeekend: Schema.Attribute.Integer;
+    pricingType: Schema.Attribute.Enumeration<['hourly', 'package', 'daily']> &
+      Schema.Attribute.DefaultTo<'hourly'>;
     publishedAt: Schema.Attribute.DateTime;
     rating: Schema.Attribute.Integer;
     type_kz: Schema.Attribute.String;
