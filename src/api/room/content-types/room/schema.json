@@ -85,7 +85,7 @@
       ]
     },
     "packageHours": {
-      "type": "integer"
+      "type": "decimal"
     },
     "packagePrice": {
       "type": "integer"
