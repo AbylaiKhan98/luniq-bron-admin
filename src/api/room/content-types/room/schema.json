@@ -92,6 +92,12 @@
     },
     "packagePriceWeekend": {
       "type": "integer"
+    },
+    "programDetails_ru": {
+      "type": "text"
+    },
+    "programDetails_kz": {
+      "type": "text"
     }
   }
 }
